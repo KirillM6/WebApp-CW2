@@ -1,0 +1,22 @@
+
+<title>Steam Games</title>
+<h1> Steam Games </h1>
+
+<div *ngFor="let game of WebService().game_list">
+  <div class="card text-white bg-primary mb-3"
+       style="cursor: pointer"
+       [routerLink]="['/steamgames', game._id]">
+    <div class="row">
+      <div class="col-sm-6">
+        <button class="col-sm-6"
+                (click)="previousPage()">Previous</button>
+      </div>
+      <div class="btn btn-primary"
+           (click)="nextPage()">Next</div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+

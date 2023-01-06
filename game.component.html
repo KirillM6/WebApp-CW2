@@ -1,0 +1,67 @@
+<div *ngFor = "let game of games_list | async">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div *ngFor="let games of games_list | async">
+          <div class="card-header">
+            {{ game.name }}
+          </div>
+          <div class="card-body">
+            These games are from {{game.list}}
+          </div>
+          <div class="card-footer">
+            {{game.rating_count}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card bg-light mb-3"
+             style = "width: 30rem; margin:auto"
+             *ngFor = "let rating of rating | async">
+          <div class="card-header">
+            rating by {{ rating.name }}
+            on {{ rating.date.substr(0,10) | date }}
+          </div>
+          <div class="card-body">
+            {{ rating.text }}
+            <hr>
+            <p><strong>Votes:</strong>
+              {{ rating.funny }} funny,
+              {{ rating.useful }} useful,
+              {{ rating.cool }} cool </p>
+          </div>
+          <div class="card-footer">
+            {{ rating.stars }} stars
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <h2>Leave a rating below</h2>
+        <form [formGroup]="ratingForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="stars"> Leave a rating below (5: best)
+          </label>
+          <select id="stars"name="stars" class="form-control" formControlName="stars">
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary">Submit</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
